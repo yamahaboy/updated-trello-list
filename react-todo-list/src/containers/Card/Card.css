@@ -1,0 +1,46 @@
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.title-card {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  resize: none;
+  height: auto;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  color: rgb(74, 71, 71);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.description-card {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  resize: none;
+  height: auto;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  color: rgb(74, 71, 71);
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+strong {
+  color: black;
+}
+
+.button-block {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
