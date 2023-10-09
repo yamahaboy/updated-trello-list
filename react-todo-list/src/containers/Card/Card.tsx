@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "../../components/Button/Button";
 import { CardProps } from "./types";
-import { Checkbox } from "../../components/Checkbox/Checkbox";
+import { Checkbox } from "../../components/CheckBox/CheckBox";
 import "./Card.css";
 
 export const Card: React.FC<CardProps> = ({

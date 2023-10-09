@@ -3,7 +3,7 @@ import "./Button.css";
 
 interface IButton {
   children: ReactNode;
-  type: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
 }
 
