@@ -1,12 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./ToDoForm.css";
-
 import { InputText } from "../../components/InputText/InputText";
 import { Button } from "../../components/Button/Button";
+import { useToDoContext } from "../../store/ToDoContext";
 
-import { IProps } from "./types";
-
-export const ToDoForm = ({ setFormDataHandler }: IProps) => {
+export const ToDoForm: React.FC = () => {
+  const { setToDoData } = useToDoContext();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [titleError, setTitleError] = useState<string | null>(null);
@@ -36,7 +35,10 @@ export const ToDoForm = ({ setFormDataHandler }: IProps) => {
     }
 
     const id = Date.now();
-    setFormDataHandler({ id, title, description });
+    setToDoData((prevData) => [
+      ...prevData,
+      { id, title, description, completed: false },
+    ]);
 
     setTitle("");
     setDescription("");
