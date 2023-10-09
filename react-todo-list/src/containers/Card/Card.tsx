@@ -48,6 +48,8 @@ export const Card: React.FC<CardProps> = ({
 
   const handleCancelClick = () => {
     setIsEditing(false);
+    setUpdatedTitle("");
+    setUpdatedDescription("");
   };
 
   return (
