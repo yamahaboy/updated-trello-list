@@ -42,5 +42,5 @@ strong {
 .button-block {
   display: flex;
   flex-direction: row;
-  gap: 11px;
+  gap: 10px;
 }
