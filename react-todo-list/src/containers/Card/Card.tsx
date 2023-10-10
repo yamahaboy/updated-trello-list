@@ -60,8 +60,8 @@ export const Card: React.FC<CardProps> = ({
             onChange={(e) => setUpdatedTitle(e.target.value)}
           />
         ) : (
-          <CrossLine completed={completed} description={description}>
-            {description}
+          <CrossLine completed={completed} title={title}>
+            {title}
           </CrossLine>
         )}
       </CardTitle>
@@ -74,8 +74,8 @@ export const Card: React.FC<CardProps> = ({
             onChange={(e) => setUpdatedDescription(e.target.value)}
           />
         ) : (
-          <CrossLine completed={completed} title={title}>
-            {title}
+          <CrossLine completed={completed} description={description}>
+            {description}
           </CrossLine>
         )}
       </CardDescription>

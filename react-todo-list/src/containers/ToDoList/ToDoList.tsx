@@ -2,15 +2,30 @@ import React, { useState } from "react";
 import { Card } from "../Card/Card";
 import { useToDoContext } from "../../store/ToDoContext";
 
-import { TodoList, ListTitle } from "./styles";
+// import { Button } from "../../components/Button/Button";
+
+import { TodoList, ListTitle, Container, RestoreButton } from "./styles";
 
 export const ToDoList: React.FC = () => {
-  const { toDoData, setToDoData } = useToDoContext();
+  const { toDoData, setToDoData, lastDeleted, setLastDeleted } =
+    useToDoContext();
   const [editItemId, setEditItemId] = useState<number | null>(null);
 
   const deleteHandler = (idToDeleteCard: number) => {
+    const deleteLastItem = toDoData.find((todo) => todo.id === idToDeleteCard);
+    if (deleteLastItem) {
+      setLastDeleted(deleteLastItem);
+    }
+
     const updatedToDoData = toDoData.filter(({ id }) => id !== idToDeleteCard);
     setToDoData(updatedToDoData);
+  };
+
+  const restoreHandler = () => {
+    if (lastDeleted) {
+      setToDoData([lastDeleted, ...toDoData]);
+      setLastDeleted(null);
+    }
   };
 
   const toggleCompleted = (idToToggle: number) => {
@@ -40,7 +55,12 @@ export const ToDoList: React.FC = () => {
 
   return (
     <TodoList>
-      <ListTitle>ToDo List</ListTitle>
+      <Container>
+        <ListTitle>ToDo List</ListTitle>
+        <RestoreButton onClick={restoreHandler} disabled={!lastDeleted}>
+          Restore Last
+        </RestoreButton>
+      </Container>
       {toDoData.map(({ id, title, description, completed }) => (
         <Card
           key={id}

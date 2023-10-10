@@ -10,6 +10,8 @@ interface IToDoForm {
 interface IToDoContext {
   toDoData: IToDoForm[];
   setToDoData: React.Dispatch<React.SetStateAction<IToDoForm[]>>;
+  lastDeleted: IToDoForm | null;
+  setLastDeleted: React.Dispatch<React.SetStateAction<IToDoForm | null>>;
 }
 
 const ToDoContext = createContext<IToDoContext | undefined>(undefined);
@@ -26,9 +28,12 @@ export const ToDoProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [toDoData, setToDoData] = useState<IToDoForm[]>([]);
-
+  const [lastDeleted, setLastDeleted] = useState<IToDoForm | null>(null);
+  console.log("Data=>", toDoData);
   return (
-    <ToDoContext.Provider value={{ toDoData, setToDoData }}>
+    <ToDoContext.Provider
+      value={{ toDoData, setToDoData, lastDeleted, setLastDeleted }}
+    >
       {children}
     </ToDoContext.Provider>
   );

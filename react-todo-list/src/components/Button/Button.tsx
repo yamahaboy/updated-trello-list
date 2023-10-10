@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import "./Button.css";
 
-interface IButton {
+export interface IButton {
   children: ReactNode;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
   onClick?: () => void;
 }
 
