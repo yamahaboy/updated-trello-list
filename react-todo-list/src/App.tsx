@@ -1,20 +1,20 @@
-import React from "react";
-import "./styles/App.css";
 import { ToDoProvider } from "./store/ToDoContext";
 
 import { ToDoForm } from "./containers/ToDoForm/ToDoForm";
 import { ToDoList } from "./containers/ToDoList/ToDoList";
 
+import { StyledApp, Container } from "./styles/styles";
+
 function App() {
   return (
-    <div className="App">
-      <div className="container">
+    <StyledApp>
+      <Container>
         <ToDoProvider>
           <ToDoForm />
           <ToDoList />
         </ToDoProvider>
-      </div>
-    </div>
+      </Container>
+    </StyledApp>
   );
 }
 

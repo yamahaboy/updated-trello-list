@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Card } from "../Card/Card";
 import { useToDoContext } from "../../store/ToDoContext";
-import "./ToDoList.css";
+
+import { TodoList, ListTitle } from "./styles";
 
 export const ToDoList: React.FC = () => {
   const { toDoData, setToDoData } = useToDoContext();
@@ -38,8 +39,8 @@ export const ToDoList: React.FC = () => {
   };
 
   return (
-    <div className="toDo-list">
-      <h3 className="toDo-list-title">ToDo List</h3>
+    <TodoList>
+      <ListTitle>ToDo List</ListTitle>
       {toDoData.map(({ id, title, description, completed }) => (
         <Card
           key={id}
@@ -54,6 +55,6 @@ export const ToDoList: React.FC = () => {
           onSave={saveHandler}
         />
       ))}
-    </div>
+    </TodoList>
   );
 };

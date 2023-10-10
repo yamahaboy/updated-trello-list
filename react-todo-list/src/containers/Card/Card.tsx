@@ -2,21 +2,18 @@ import React, { useState } from "react";
 import { Button } from "../../components/Button/Button";
 import { Checkbox } from "../../components/CheckBox/CheckBox";
 
-interface CardProps {
-  id: number;
-  title: string;
-  description: string;
-  completed: boolean;
-  onDelete: () => void;
-  onToggleCompleted: () => void;
-  onEdit: () => void;
-  isEditing: boolean;
-  onSave: (
-    id: number,
-    updatedTitle: string,
-    updatedDescription: string
-  ) => void;
-}
+import { CardProps } from "./types";
+
+import {
+  StyledCard,
+  CardTitle,
+  Strong,
+  CrossLine,
+  CardDescription,
+  ButtonBlock,
+  DisplayButton,
+  StyledInput,
+} from "./styles";
 
 export const Card: React.FC<CardProps> = ({
   id,
@@ -53,67 +50,57 @@ export const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className={`card ${completed ? "checked" : ""}`}>
-      <div className="title-card">
-        <strong>Title: </strong>{" "}
+    <StyledCard>
+      <CardTitle>
+        <Strong>Title: </Strong>{" "}
         {isEditing ? (
-          <input
+          <StyledInput
             type="text"
             value={updatedTitle}
             onChange={(e) => setUpdatedTitle(e.target.value)}
           />
         ) : (
-          <span
-            style={{
-              textDecoration: completed ? "line-through" : "none",
-              color: completed ? "red" : "black",
-            }}
-          >
-            {title}
-          </span>
+          <CrossLine completed={completed} description={description}>
+            {description}
+          </CrossLine>
         )}
-      </div>
-      <div className="description-card">
-        <strong>Description: </strong>{" "}
+      </CardTitle>
+      <CardDescription>
+        <Strong>Description: </Strong>
         {isEditing ? (
-          <input
+          <StyledInput
             type="text"
             value={updatedDescription}
             onChange={(e) => setUpdatedDescription(e.target.value)}
           />
         ) : (
-          <span
-            style={{
-              textDecoration: completed ? "line-through" : "none",
-              color: completed ? "red" : "black",
-            }}
-          >
-            {description}
-          </span>
+          <CrossLine completed={completed} title={title}>
+            {title}
+          </CrossLine>
         )}
-      </div>
-      <div className="button-block">
+      </CardDescription>
+      <ButtonBlock>
         <Checkbox checked={completed} onChange={handleCheckboxChange} />
         {isEditing ? (
-          <div>
+          <ButtonBlock>
             <Button type="button" onClick={handleSaveClick}>
               Save
             </Button>
             <Button type="button" onClick={handleCancelClick}>
               Cancel
             </Button>
-          </div>
+          </ButtonBlock>
         ) : (
           <Button type="button" onClick={handleEditClick}>
             Edit
           </Button>
         )}
-        <div style={{ display: isEditing ? "none" : "flex" }}>
+        <DisplayButton isEditing={isEditing}>
           <Button type="button" onClick={onDelete}>
             Delete
           </Button>
-        </div>
-      </div>
-    </div>
+        </DisplayButton>
+      </ButtonBlock>
+    </StyledCard>
   );
 };

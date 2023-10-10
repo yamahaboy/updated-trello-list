@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./ToDoForm.css";
 import { InputText } from "../../components/InputText/InputText";
 import { Button } from "../../components/Button/Button";
 import { useToDoContext } from "../../store/ToDoContext";
+
+import { Form, FormTitle, Container, Error } from "./styles";
 
 export const ToDoForm: React.FC = () => {
   const { setToDoData } = useToDoContext();
@@ -47,21 +48,19 @@ export const ToDoForm: React.FC = () => {
   };
 
   return (
-    <form className="toDo-form" onSubmit={onSubmitHandler}>
-      <h3 className="toDo-form-title">Add toDo</h3>
-      <div className="container">
+    <Form onSubmit={onSubmitHandler}>
+      <FormTitle>Add toDo</FormTitle>
+      <Container>
         <InputText placeholder="Title:" value={title} onChange={titleHandler} />
-        {titleError && <div className="error-message">{titleError}</div>}
+        {titleError && <Error>{titleError}</Error>}
         <InputText
           placeholder="Description:"
           value={description}
           onChange={descriptionHandler}
         />
-        {descriptionError && (
-          <div className="error-message">{descriptionError}</div>
-        )}
+        {descriptionError && <Error>{descriptionError}</Error>}
         <Button type="submit">Submit</Button>
-      </div>
-    </form>
+      </Container>
+    </Form>
   );
 };

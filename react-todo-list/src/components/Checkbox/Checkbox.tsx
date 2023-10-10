@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledChecbox } from "./styles";
 
 interface CheckboxProps {
   checked: boolean;
@@ -15,7 +16,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   return (
     <div>
-      <input
+      <StyledChecbox
         type="checkbox"
         checked={checked}
         onChange={handleCheckboxChange}
