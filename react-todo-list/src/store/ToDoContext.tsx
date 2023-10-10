@@ -17,7 +17,7 @@ const ToDoContext = createContext<IToDoContext | undefined>(undefined);
 export const useToDoContext = () => {
   const context = useContext(ToDoContext);
   if (!context) {
-    throw new Error("useToDoContext must be used within a ToDoProvider");
+    throw new Error("error on useToDoContext, check ToDoProvider");
   }
   return context;
 };
