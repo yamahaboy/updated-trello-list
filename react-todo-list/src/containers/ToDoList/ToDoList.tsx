@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "../Card/Card";
 import { useToDoContext } from "../../store/ToDoContext";
 
-// import { Button } from "../../components/Button/Button";
+import { getToDos } from "../../api/services/toDoService/service";
 
 import { TodoList, ListTitle, Container, RestoreButton } from "./styles";
 
@@ -52,6 +52,19 @@ export const ToDoList: React.FC = () => {
     setToDoData(updatedToDoData);
     setEditItemId(null);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getToDos();
+        setToDoData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [setToDoData]);
 
   return (
     <TodoList>

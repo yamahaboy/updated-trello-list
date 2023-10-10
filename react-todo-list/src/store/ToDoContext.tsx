@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
-interface IToDoForm {
+export interface IToDoForm {
   id: number;
   title: string;
   description: string;
